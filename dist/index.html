@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e9">
+  <meta name="description" content="A clear, size-aware sock knitting calculator for cuff-down and toe-up construction.">
+  <title>Sock Atlas — knitting calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#calculator" aria-label="Sock Atlas, calculator home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 42 42" fill="none"><path d="M15 4v17l-7 8c-2 2-1 6 3 8 4 2 9 1 12-2l11-10-7-8V4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 13h12M15 18h12M11 26l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span>Sock <em>Atlas</em></span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="#calculator" data-nav="calculator">Calculator</a>
+        <a href="#formulas" data-nav="formulas">The formulas</a>
+      </nav>
+      <span class="header-note">A practical sock reference</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT PAIR, SORTED</div>
+          <h1>The numbers behind<br><i>well-fitting socks.</i></h1>
+          <p>Enter your measurements and gauge. Get the stitch count, shaping landmarks, and just-enough instructions for the way you knit.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <svg class="sock-art" viewBox="0 0 220 245" fill="none"><path d="M77 17h78v112c0 7 3 12 8 17l35 33c9 8 9 20 1 29-8 10-24 15-39 17-17 3-31 0-40-9l-70-65c-6-6-9-13-9-21V17h36Z" fill="#d2704e" stroke="#773b30" stroke-width="3"/><path d="M41 95h114M41 108h114M41 121h114M77 17v61M92 17v61M108 17v61M124 17v61M140 17v61" stroke="#f3c8ae" stroke-width="3"/><path d="M44 145c29-6 60 4 77 24l29 31M52 158l72 65" stroke="#ab4e3a" stroke-width="3"/><path d="M41 78h114M41 86h114" stroke="#773b30" stroke-width="3"/></svg>
+          <span class="art-label label-top">CO / BO</span><span class="art-label label-bottom">HEEL TURN ↗</span>
+        </div>
+      </section>
+
+      <section id="calculator" class="page-section" aria-labelledby="calculator-heading">
+        <div class="section-heading"><div><span class="section-kicker">01 / CALCULATOR</span><h2 id="calculator-heading">Set your pair</h2></div><p>Measurements are more reliable than shoe size. Presets are starting points; edit any field.</p></div>
+        <div class="app-grid">
+          <aside class="control-panel" aria-label="Sock settings">
+            <div class="control-block">
+              <div class="block-title"><span class="step-number">01</span><h3>Construction</h3></div>
+              <div class="segmented" role="group" aria-label="Construction direction"><button type="button" data-direction="cuff">Cuff-down</button><button type="button" data-direction="toe">Toe-up</button></div>
+            </div>
+            <div class="control-block">
+              <div class="block-title"><span class="step-number">02</span><h3>Foot size</h3></div>
+              <div class="size-list" role="group" aria-label="Foot size preset"><button type="button" data-preset="S">S <small>20 × 23</small></button><button type="button" data-preset="M">M <small>22 × 25</small></button><button type="button" data-preset="L">L <small>24 × 27</small></button><button type="button" data-preset="XL">XL <small>26 × 29</small></button></div>
+              <p class="micro-copy" id="preset-note">Preset figures are circumference × length, in cm.</p>
+              <div class="field-grid">
+                <label class="field"><span>Foot circumference <abbr title="Measure around the ball of the foot">ⓘ</abbr></span><div class="input-wrap"><input id="circumference" type="number" min="10" max="45" step="0.1" inputmode="decimal"><span class="unit">cm</span></div></label>
+                <label class="field"><span>Foot length <abbr title="From back of heel to longest toe">ⓘ</abbr></span><div class="input-wrap"><input id="length" type="number" min="10" max="45" step="0.1" inputmode="decimal"><span class="unit">cm</span></div></label>
+              </div>
+              <div class="unit-switch" role="group" aria-label="Measurement units"><button type="button" data-unit="cm">Centimetres</button><button type="button" data-unit="in">Inches</button></div>
+            </div>
+            <div class="control-block">
+              <div class="block-title"><span class="step-number">03</span><h3>Gauge & fit</h3></div>
+              <div class="field-grid">
+                <label class="field"><span>Stitches / <span class="gauge-basis">10 cm</span></span><div class="input-wrap"><input id="stitchGauge" type="number" min="8" max="60" step="0.1" inputmode="decimal"><span class="unit">sts</span></div></label>
+                <label class="field"><span>Rounds / <span class="gauge-basis">10 cm</span></span><div class="input-wrap"><input id="rowGauge" type="number" min="10" max="80" step="0.1" inputmode="decimal"><span class="unit">rnds</span></div></label>
+              </div>
+              <label class="field ease-field"><span>Negative ease <abbr title="How much smaller the sock is than the measured foot">ⓘ</abbr></span><div class="ease-line"><input id="ease" type="range" min="0" max="20" step="1"><output id="ease-output">10%</output></div></label>
+              <p class="micro-copy">Gauge is from a washed, relaxed swatch in the round.</p>
+            </div>
+            <div class="control-block">
+              <div class="block-title"><span class="step-number">04</span><h3>Heel & lengths</h3></div>
+              <label class="field"><span>Heel style</span><select id="heel"><option value="flap">Classic flap & gusset</option><option value="flk">Fish Lips Kiss heel</option></select></label>
+              <div class="field-grid length-fields">
+                <label class="field"><span>Cuff height</span><div class="input-wrap"><input id="cuffHeight" type="number" min="0" max="30" step="0.1" inputmode="decimal"><span class="unit">cm</span></div></label>
+                <label class="field"><span>Leg after cuff</span><div class="input-wrap"><input id="legHeight" type="number" min="0" max="50" step="0.1" inputmode="decimal"><span class="unit">cm</span></div></label>
+              </div>
+              <label class="field" id="heel-allowance-field"><span>Toe-up heel allowance <abbr title="Starting estimate for the Fish Lips Kiss heel. Check against the pattern's foot template or try on.">ⓘ</abbr></span><div class="input-wrap"><input id="heelAllowance" type="number" min="2" max="12" step="0.1" inputmode="decimal"><span class="unit">cm</span></div></label>
+            </div>
+          </aside>
+
+          <div class="results" id="results" aria-live="polite">
+            <div class="result-head"><div><span class="section-kicker">YOUR WORKING NUMBERS</span><h2 id="result-title">Your sock plan</h2></div><div class="result-actions"><button type="button" id="copy-plan" title="Copy the plan">Copy plan</button><button type="button" id="print-plan" title="Print the plan">Print</button></div></div>
+            <div id="validation" class="validation" role="alert" hidden>Enter positive measurements and gauge to calculate your pair.</div>
+            <div class="stat-grid"><div class="main-stat"><span id="main-stat-label">CAST ON</span><strong id="main-stat-number">—</strong><small>stitches · rounded to a multiple of 4</small></div><div class="side-stats"><div><span>HEEL STITCHES</span><strong id="heel-stat">—</strong></div><div><span>FITTED CIRCUMFERENCE</span><strong id="circ-stat">—</strong></div></div></div>
+            <div class="plan-intro"><span class="plan-asterisk">✳</span><p id="plan-intro-text"></p></div>
+            <div class="recipe" id="recipe"></div>
+            <div class="fit-note"><span class="note-icon">i</span><p><strong>Fit check</strong> The calculated numbers are a starting point. Try the sock on around the heel and before finishing the toe or cuff, especially if your instep is high.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="formulas" class="page-section formulas-section" aria-labelledby="formulas-heading">
+        <div class="section-heading"><div><span class="section-kicker">02 / THE FORMULAS</span><h2 id="formulas-heading">Show your workings</h2></div><p>The arithmetic behind the plan, with your current numbers filled in.</p></div>
+        <div class="formula-grid">
+          <div class="formula-card featured"><span class="formula-index">01 / STITCH COUNT</span><h3>Size the tube</h3><p>Apply negative ease to the measured foot circumference, multiply by stitch gauge, then round to the nearest multiple of four.</p><div class="equation" id="formula-stitches-equation">stitches = round₄(circumference × (1 − ease) × sts / cm)</div><div class="worked" id="formula-stitches"></div></div>
+          <div class="formula-card"><span class="formula-index">02 / HEEL</span><h3>Divide in half</h3><p>The heel works over half the tube. For a classic flap, work roughly one row per heel stitch and pick up one stitch for every two flap rows.</p><div class="equation">heel sts = total ÷ 2<br>pickups / side = flap rows ÷ 2</div><div class="worked" id="formula-heel"></div></div>
+          <div class="formula-card"><span class="formula-index">03 / TOE</span><h3>Shape the wedge</h3><p>Begin or finish with about a quarter of the tube stitches. Change by four stitches per shaping round. Shape rapidly to half the tube, then every other round to full width (reverse for cuff-down).</p><div class="equation" id="formula-toe-equation">toe length ≈ total toe rounds ÷ rounds per cm</div><div class="worked" id="formula-toe"></div></div>
+          <div class="formula-card"><span class="formula-index">04 / LANDMARKS</span><h3>Find the turn</h3><p>For a toe-up flap, increase about ⅜ of the heel stitches on each side over alternate rounds. For Fish Lips Kiss, the toe-up allowance is an editable starting estimate; the designer’s foot template is the fitting method.</p><div class="equation" id="formula-landmark-equation">gusset length ≈ (increases / side × 2) ÷ rounds per cm</div><div class="worked" id="formula-landmark"></div></div>
+        </div>
+        <div class="sources"><h3>Notes & sources</h3><p>Size presets are examples, not shoe-size standards. This calculator assumes stockinette gauge and a 10% ease default; adjust for yarn, stitch pattern, and personal fit. Toe and gusset lengths are estimates because your knitting and heel turn can change the finished length.</p><p>The <a href="https://knitty.com/sizing.html" target="_blank" rel="noopener">Knitty sizing guide</a> discusses sock ease. <a href="https://knitty.com/ISSUEdf25/FEATdf25WK/FEATdf25WK.php" target="_blank" rel="noopener">Knitty’s heel-flap guide</a> covers slipped edges and pickup spacing. Fish Lips Kiss is by Sox Therapist; <a href="https://www.ravelry.com/patterns/library/fish-lips-kiss-heel" target="_blank" rel="noopener">use the original pattern</a> for its full heel method.</p></div>
+      </section>
+    </main>
+    <footer><span>Sock Atlas <b>✳</b> Knit with confidence.</span><span>Made for the knitter who already knows the rhythm.</span></footer>
+  </div>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
