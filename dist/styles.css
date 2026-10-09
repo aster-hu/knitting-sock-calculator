@@ -65,7 +65,7 @@ h1,h2,h3,p { margin-top:0; }
 .result-actions { display:flex; gap:7px; }
 .result-actions button { background:transparent; border:1px solid #d6d1e0; border-radius:4px; padding:7px 11px; color:var(--green); font:11px var(--mono); white-space:nowrap; }
 .result-actions button:hover { border-color:var(--green); background:#f0edf6; }
-.stat-grid { display:grid; grid-template-columns:1.45fr 1fr; border:1px solid #d6d0e1; border-radius:6px; background:#e9e6f0; margin-top:26px; overflow:hidden; }
+.stat-grid { display:grid; grid-template-columns:1.45fr 1fr; border:1px solid #d6d0e1; border-radius:6px; background:#f2eff8; margin-top:26px; overflow:hidden; }
 .main-stat { padding:22px 28px; }
 .main-stat>span,.side-stats span { font:11px var(--mono); letter-spacing:.09em; color:#5e5077; }
 .main-stat strong { display:block; font:500 clamp(60px,6vw,94px)/1 var(--serif); letter-spacing:-.06em; margin-top:8px; color:var(--green); }
@@ -87,7 +87,7 @@ h1,h2,h3,p { margin-top:0; }
 .recipe-step p { color:#6b5e82; font-size:12px; line-height:1.6; margin:0; }
 .recipe-step p strong { color:var(--ink); }
 .recipe-accent { font:10px var(--mono); color:#754fac; white-space:nowrap; align-self:center; padding-left:10px; }
-.heel-card { margin-top:16px; background:#f0ecf6; border:1px solid #d5c7ea; border-radius:5px; padding:20px 22px; color:#574c6a; }
+.heel-card { margin-top:16px; background:#f7f4fb; border:1px solid #d5c7ea; border-radius:5px; padding:20px 22px; color:#574c6a; }
 .heel-card-top { display:flex; gap:12px; align-items:center; margin-bottom:10px; }
 .heel-card-top h3 { margin:1px 0 0; font:600 18px var(--serif); color:var(--ink); }
 .heel-icon { display:grid; place-items:center; width:35px; height:35px; border-radius:50%; background:#bda2e3; color:#593192; font-size:23px; }
