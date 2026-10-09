@@ -1,4 +1,4 @@
-:root { --paper:#f8f6fc; --cream:#faf7ea; --ink:#302b49; --muted:#756e89; --line:#ded8eb; --orange:#7652b4; --orange-light:#eee5fa; --sage:#eee9f8; --green:#4d3c77; --mono:'DM Mono',monospace; --sans:'DM Sans',sans-serif; --serif:'Fraunces',Georgia,serif; }
+:root { --paper:#f8f6fc; --cream:#ffffff; --ink:#302b49; --muted:#756e89; --line:#ded8eb; --orange:#7652b4; --orange-light:#eee5fa; --sage:#eee9f8; --green:#4d3c77; --mono:'DM Mono',monospace; --sans:'DM Sans',sans-serif; --serif:'Fraunces',Georgia,serif; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 var(--sans); }
@@ -43,7 +43,7 @@ h1,h2,h3,p { margin-top:0; }
 .field { display:block; min-width:0; }
 .field>span:first-child { font-size:12px; font-weight:700; color:#564c68; display:block; margin-bottom:7px; }
 .field abbr { text-decoration:none; color:#a197b4; cursor:help; margin-left:2px; }
-.input-wrap { border:1px solid #d5d0df; border-radius:5px; background:#fdfaf1; display:flex; align-items:center; height:40px; padding:0 9px; transition:border-color .15s; }
+.input-wrap { border:1px solid #d5d0df; border-radius:5px; background:#fff; display:flex; align-items:center; height:40px; padding:0 9px; transition:border-color .15s; }
 .input-wrap:focus-within { border-color:var(--orange); }
 .input-wrap input { width:100%; min-width:0; border:0; outline:0!important; background:transparent; color:var(--ink); font:600 14px var(--sans); }
 .input-wrap .unit { font:10px var(--mono); color:#968aab; white-space:nowrap; }
@@ -55,7 +55,7 @@ h1,h2,h3,p { margin-top:0; }
 .ease-line input { width:100%; accent-color:var(--orange); cursor:pointer; }
 .ease-line output { font:13px var(--mono); color:var(--orange); min-width:38px; text-align:right; }
 .control-block:has(.ease-field) .micro-copy { margin-bottom:0; }
-.control-block select { width:100%; height:41px; border:1px solid #d5d0df; background:#fdfaf1; border-radius:5px; color:var(--ink); padding:0 10px; font-size:13px; font-weight:600; }
+.control-block select { width:100%; height:41px; border:1px solid #d5d0df; background:#fff; border-radius:5px; color:var(--ink); padding:0 10px; font-size:13px; font-weight:600; }
 .length-fields { margin-top:16px; }
 #heel-allowance-field { margin-top:14px; }
 #heel-allowance-field[hidden] { display:none; }
@@ -97,7 +97,7 @@ h1,h2,h3,p { margin-top:0; }
 .heel-card strong { color:var(--ink); }
 .heel-card a { font-size:12px; font-weight:700; color:#6434a8; }
 .heel-card small { display:block; font-size:11px; color:#8166a7; margin-top:7px; }
-.heel-split { background:#faf7ea; border:1px solid #d5c7ea; border-radius:4px; padding:10px 12px; text-align:center; font:11px/1.7 var(--mono); color:#654790; margin:14px 0 4px; }
+.heel-split { background:#faf8fc; border:1px solid #d5c7ea; border-radius:4px; padding:10px 12px; text-align:center; font:11px/1.7 var(--mono); color:#654790; margin:14px 0 4px; }
 .heel-phase { border-top:1px solid #d5c7ea; padding:15px 0 2px; }
 .heel-phase h4 { font:600 14px var(--sans); color:var(--ink); margin:0 0 8px; }
 .heel-phase ol { margin:7px 0 9px; }
@@ -120,7 +120,7 @@ h1,h2,h3,p { margin-top:0; }
 .formula-card.featured { background:#e3dded; }
 .formula-card h3 { font:500 24px var(--serif); letter-spacing:-.03em; margin:9px 0; }
 .formula-card p { font-size:13px; color:#6b5e82; max-width:500px; min-height:56px; }
-.equation { font:11px/1.8 var(--mono); color:#3c2d57; background:#faf7ea; border:1px solid #dfdae8; border-radius:4px; padding:11px 13px; min-height:59px; }
+.equation { font:11px/1.8 var(--mono); color:#3c2d57; background:#fcfcfd; border:1px solid #dfdae8; border-radius:4px; padding:11px 13px; min-height:59px; }
 .worked { font:12px/1.7 var(--mono); color:#6b499c; margin-top:15px; }
 .worked strong { font-weight:500; color:#512b88; }
 .sources { margin-top:24px; border-top:1px solid #ccc6d6; padding-top:21px; display:grid; grid-template-columns:200px 1fr 1fr; gap:25px; }
