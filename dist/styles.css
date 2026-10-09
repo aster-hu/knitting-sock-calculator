@@ -18,6 +18,10 @@ h1,h2,h3,p { margin-top:0; }
 .top-nav a:hover,.top-nav a.current { color:var(--green); }
 .top-nav a.current:after { content:''; height:3px; background:var(--orange); position:absolute; bottom:0; left:0; right:0; }
 .header-note { border-left:1px solid var(--line); padding-left:30px; color:#86799e; font:11px var(--mono); text-transform:uppercase; letter-spacing:.05em; white-space:nowrap; }
+.maker-credit { text-decoration:none; color:#86799e; font-weight:400; }
+.maker-credit:hover { color:#5e5077; text-decoration:underline; text-underline-offset:3px; }
+.maker-credit span:first-child { color:#a99bbd; margin-right:4px; }
+.maker-credit span:last-child { margin-left:2px; }
 .section-kicker,.formula-index { font:11px/1.4 var(--mono); letter-spacing:.11em; color:var(--orange); font-weight:500; }
 .page-section { padding:40px clamp(24px,4vw,64px) 74px; scroll-margin-top:30px; }
 .section-heading { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:28px; }
@@ -129,7 +133,10 @@ h1,h2,h3,p { margin-top:0; }
 .sources a { color:#6337a2; font-weight:700; text-underline-offset:2px; }
 footer { padding:24px clamp(24px,4vw,64px); display:flex; justify-content:space-between; gap:20px; font-size:11px; color:#877a9f; }
 footer b { color:var(--orange); font-weight:400; }
+footer .maker-credit { white-space:nowrap; }
 @media(max-width:1040px) { .header-note { display:none; } .app-grid { grid-template-columns:minmax(290px,350px) 1fr; } .recipe-accent { display:none; } .results { padding:24px; } }
 @media(max-width:820px) { .app-grid { grid-template-columns:1fr; } .control-panel { display:grid; grid-template-columns:repeat(2,1fr); gap:0 24px; } .control-block:nth-child(2) { border-bottom:1px solid #dcd7e6; } .sources { grid-template-columns:1fr 1fr; } .sources h3 { grid-column:1/-1; } }
 @media(max-width:600px) { .site-header { height:69px; padding:0 20px; gap:14px; } .brand { font-size:20px; } .brand-mark { width:30px; } .brand-mark svg { width:28px; } .top-nav { gap:18px; } .top-nav a { font-size:11px; } .page-section { padding:40px 18px 56px; } .section-heading { display:block; } .section-heading h2 { font-size:33px; } .section-heading p { margin-top:10px; } .control-panel { display:block; padding:0 21px; } .control-block { padding:19px 0; } .results { padding:20px; } .result-head { flex-wrap:wrap; } .result-actions { width:100%; margin-top:3px; } .stat-grid { grid-template-columns:1.1fr 1fr; } .main-stat { padding:18px; } .main-stat strong { font-size:63px; } .side-stats>div { padding:14px; } .side-stats strong { font-size:20px; } .side-stats span,.main-stat>span { font-size:9px; } .recipe-step { grid-template-columns:28px 1fr; gap:5px; } .formula-grid { grid-template-columns:1fr; } .formula-card p { min-height:0; } .sources { grid-template-columns:1fr; gap:10px; } footer { display:block; padding:24px 18px; } footer span { display:block; margin:5px 0; } }
+@media(max-width:600px) { footer .maker-credit span { display:inline; margin:0; } }
+@media(max-width:420px) { .site-header { height:auto; flex-wrap:wrap; padding:12px 20px 0; row-gap:0; } .top-nav { width:100%; height:38px; margin-left:0; gap:24px; } }
 @media print { body { background:white; color:black; font-size:11pt; } .site-header,.control-panel,.formulas-section,.result-actions,footer { display:none!important; } .page-section { padding:0; } .section-heading { display:none; } .app-grid { display:block; } .results { border:0; box-shadow:none; padding:0; } .stat-grid { background:white; } .recipe-step,.heel-card { break-inside:avoid; } .fit-note { margin-top:12px; } }

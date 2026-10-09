@@ -9,7 +9,7 @@ const gaugeFactor = 10.16 / 10; // 4 in / 10 cm
 
 let state = { ...DEFAULTS };
 try {
-  const saved = JSON.parse(localStorage.getItem('sock-atlas-settings'));
+  const saved = JSON.parse(localStorage.getItem('sock-calculator-settings'));
   if (saved && typeof saved === 'object') state = { ...DEFAULTS, ...saved };
 } catch { /* Private browsing or old saved data: use defaults. */ }
 
@@ -168,7 +168,7 @@ function render() {
   $('#plan-intro-text').innerHTML = `At ${state.ease}% negative ease, the sock tube finishes at about <strong>${lengthText(c.actualCircumference)}</strong> around. It is sized for a <strong>${lengthText(state.circumference)}</strong> foot.`;
   $('#recipe').innerHTML = recipe(c);
   formulaContent(c);
-  try { localStorage.setItem('sock-atlas-settings', JSON.stringify(state)); } catch { /* Settings remain available this visit. */ }
+  try { localStorage.setItem('sock-calculator-settings', JSON.stringify(state)); } catch { /* Settings remain available this visit. */ }
 }
 
 for (const key of formFields) {
@@ -197,7 +197,7 @@ $('#copy-plan').addEventListener('click', async () => {
   const c = calculate(state);
   if (!c) return;
   const text = [
-    `Sock Atlas — ${state.direction === 'cuff' ? 'cuff-down' : 'toe-up'}, ${state.heel === 'flap' ? 'classic flap & gusset' : 'Fish Lips Kiss heel'}`,
+    `Sock Calculator — ${state.direction === 'cuff' ? 'cuff-down' : 'toe-up'}, ${state.heel === 'flap' ? 'classic flap & gusset' : 'Fish Lips Kiss heel'}`,
     `Foot: ${lengthText(state.circumference)} around × ${lengthText(state.length)} long; ${state.ease}% ease`,
     `Gauge: ${decimal(state.stitchGauge)} sts, ${decimal(state.rowGauge)} rounds / 10 cm`,
     `Sock: ${c.stitches} sts; heel: ${c.heelStitches} sts; toe: ${c.toeStitches} sts; toe length ≈ ${lengthText(c.toeLength)}`,
