@@ -54,8 +54,8 @@ function syncInputs() {
   $('#heel-allowance-field').hidden = !(state.heel === 'flk' && state.direction === 'toe');
 }
 
-function item(index, eyebrow, heading, detail, accent = '') {
-  return `<div class="recipe-step"><span class="recipe-index">${String(index).padStart(2, '0')}</span><div><span class="recipe-eyebrow">${eyebrow}</span><h3>${heading}</h3><p>${detail}</p></div>${accent ? `<span class="recipe-accent">${accent}</span>` : ''}</div>`;
+function item(index, eyebrow, heading, detail, accent = '', extra = '') {
+  return `<div class="recipe-step"><span class="recipe-index">${String(index).padStart(2, '0')}</span><div><span class="recipe-eyebrow">${eyebrow}</span><h3>${heading}</h3><p>${detail}</p>${extra}</div>${accent ? `<span class="recipe-accent">${accent}</span>` : ''}</div>`;
 }
 
 function heelInstructions(c) {
@@ -114,7 +114,7 @@ function recipe(c) {
     steps = [
       item(1, 'BEGIN', `Cast on ${c.stitches} stitches`, `Join in the round without twisting. Work ${rib}`, `${c.stitches} STS`),
       item(2, 'LEG', 'Work to heel', leg),
-      item(3, 'HEEL', state.heel === 'flk' ? 'Work short-row heel' : 'Work flap, turn & gusset', `Use the ${c.heelStitches} heel stitches. See the heel reference below.`),
+      item(3, 'HEEL', state.heel === 'flk' ? 'Work short-row heel' : 'Work flap, turn & gusset', `Work on the ${c.heelStitches} heel stitches.`, '', heelInstructions(c)),
       item(4, 'FOOT & TOE', 'Shape the finish', toeDown, `≈ ${lengthText(c.toeLength)} TOE`),
     ];
   } else {
@@ -123,11 +123,11 @@ function recipe(c) {
     steps = [
       item(1, 'BEGIN', `Cast on ${c.toeStitches} stitches`, toeUp, `${c.toeStitches} → ${c.stitches}`),
       item(2, 'FOOT', `Work to ${heelName} start`, `Measure from the toe. Begin at about <strong>${lengthText(heelPoint)}</strong> of foot length. Try on and adjust the heel placement as needed.`),
-      item(3, 'HEEL', state.heel === 'flap' ? 'Shape gusset, turn & flap' : 'Work short-row heel', `Use the ${c.heelStitches} sole stitches. See the heel reference below.`),
+      item(3, 'HEEL', state.heel === 'flap' ? 'Shape gusset, turn & flap' : 'Work short-row heel', `Work on the ${c.heelStitches} sole stitches.`, '', heelInstructions(c)),
       item(4, 'LEG & CUFF', 'Finish the leg', `${leg} Then work ${rib} Bind off loosely or use a stretchy bind-off.`),
     ];
   }
-  return `<div class="recipe-title"><span>THE ROUTE</span><span>${state.direction === 'cuff' ? 'CUFF → TOE' : 'TOE → CUFF'}</span></div>${steps.join('')}${heelInstructions(c)}`;
+  return `<div class="recipe-title"><span>THE ROUTE</span><span>${state.direction === 'cuff' ? 'CUFF → TOE' : 'TOE → CUFF'}</span></div>${steps.join('')}`;
 }
 
 function formulaContent(c) {
