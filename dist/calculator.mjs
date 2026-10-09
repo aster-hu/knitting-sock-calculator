@@ -35,6 +35,13 @@ export function calculate(input) {
   const heelStitches = stitches / 2;
   const flapRows = heelStitches;
   const pickup = flapRows / 2;
+  const classicSide = Math.floor(heelStitches / 3);
+  const classicCenter = heelStitches - 2 * classicSide;
+  const classicTurnRows = 2 + 2 * classicSide;
+  const classicGussetSetupStitches = stitches + classicCenter;
+  const classicGussetDecreaseRounds = classicCenter / 2;
+  const flkTwinsPerSide = Math.round((heelStitches - 2) / 3);
+  const flkCenter = heelStitches - 2 - 2 * flkTwinsPerSide;
   const toeUpGussetPerSide = Math.round(heelStitches * 0.375);
   const gussetStitches = stitches + toeUpGussetPerSide * 2;
   const toeStitches = Math.max(8, nearestFour(stitches / 4));
@@ -51,7 +58,9 @@ export function calculate(input) {
   const toeStart = Math.max(0, length - toeLength);
   const gussetStart = Math.max(0, length - gussetLength);
   const shortRowStart = Math.max(0, length - heelAllowance);
-  return { rawStitches, stitches, heelStitches, flapRows, pickup, toeUpGussetPerSide, gussetStitches,
+  return { rawStitches, stitches, heelStitches, flapRows, pickup,
+    classicSide, classicCenter, classicTurnRows, classicGussetSetupStitches, classicGussetDecreaseRounds,
+    flkTwinsPerSide, flkCenter, toeUpGussetPerSide, gussetStitches,
     toeStitches, toeMid, fastToeRounds, slowToeIncreaseRounds, toeRounds, toeLength,
     gussetRounds, gussetLength, cuffRounds, legRounds, actualCircumference,
     toeStart, gussetStart, shortRowStart };
