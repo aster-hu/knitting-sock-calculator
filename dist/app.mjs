@@ -58,38 +58,66 @@ function item(index, eyebrow, heading, detail, accent = '', extra = '') {
   return `<div class="recipe-step"><span class="recipe-index">${String(index).padStart(2, '0')}</span><div><span class="recipe-eyebrow">${eyebrow}</span><h3>${heading}</h3><p>${detail}</p>${extra}</div>${accent ? `<span class="recipe-accent">${accent}</span>` : ''}</div>`;
 }
 
+const times = n => `${n} ${n === 1 ? 'time' : 'times'}`;
+const moreTimes = n => `${n} more ${n === 1 ? 'time' : 'times'}`;
+
 function heelInstructions(c) {
   if (state.heel === 'flk') {
+    const H = c.heelStitches;
+    const t = c.flkTwinsPerSide;
+    const m = c.flkCenter;
+    const cuffNote = state.direction === 'cuff'
+      ? `<p class="heel-count"><strong>Before you start:</strong> about <strong>${lengthText(2.54)}</strong> before the heel, switch the heel half of the sock to plain stockinette; keep working the instep in pattern. The pattern calls this the dotted line on the cardboard foot.</p>`
+      : '';
     return `<div class="heel-card"><div class="heel-card-top"><span class="heel-icon">↶</span><div><span class="recipe-eyebrow">HEEL REFERENCE</span><h3>Fish Lips Kiss heel</h3></div></div>
-      <p>Work flat on <strong>${c.heelStitches} heel stitches</strong>, with ${c.heelStitches} instep stitches resting. Start with the knit side facing. A twin stitch (TS) is worked as one stitch whenever you meet it again.</p>
-      <div class="heel-split">1 edge · <strong>${c.flkTwinsPerSide} twin stitches</strong> · <strong>${c.flkCenter} centre stitches</strong> · <strong>${c.flkTwinsPerSide} twin stitches</strong> · 1 edge</div>
-      <div class="heel-phase"><h4>1 / Shorten the rows</h4><ol>
-        <li><strong>RS:</strong> K${c.heelStitches - 2}, make a TSK in the next stitch, leave the final edge stitch unworked; turn.</li>
-        <li><strong>WS:</strong> P${c.heelStitches - 4}, make a TSP in the next stitch, leave the final edge stitch unworked; turn.</li>
-        <li><strong>RS:</strong> Knit to one stitch before the nearest TS, make a TSK there; turn. <strong>WS:</strong> Purl to one before the nearest TS, make a TSP there; turn. Work this RS/WS pair <strong>${c.flkTwinsPerSide - 1} times</strong> in all. End after a WS row with ${c.flkCenter} plain centre stitches and ${c.flkTwinsPerSide} TS on each side.</li>
+      <p>Work flat on <strong>${H} heel stitches</strong>, with ${H} instep stitches resting. Begin at the first heel stitch with the knit side facing. The stitch count never changes. Whenever you meet a twin stitch (TS) again, work its two loops together as one stitch.</p>
+      ${cuffNote}
+      <div class="heel-split">1 edge · <strong>${t} twin stitches</strong> · <strong>${m} centre stitches</strong> · <strong>${t} twin stitches</strong> · 1 edge</div>
+      <div class="heel-phase"><h4>1 / Build the first half</h4><ol>
+        <li><strong>Row 1 (RS):</strong> Knit to 2 stitches from the end (K${H - 2}), TSK in the next stitch, turn. The last stitch stays unworked.</li>
+        <li><strong>Row 2 (WS):</strong> Purl to 2 stitches from the end (P${H - 4}), TSP in the next stitch, turn.</li>
+        <li><strong>Row 3 (RS):</strong> Knit to 1 stitch before the TS (K${H - 5}), TSK in that stitch, turn.</li>
+        <li><strong>Row 4 (WS):</strong> Purl to 1 stitch before the TS (P${H - 6}), TSP in that stitch, turn.</li>
+        <li><strong>Repeat Rows 3–4 ${moreTimes(t - 2)}</strong> (${t - 1} pairs in all). Each row is 1 stitch shorter than the one before; the last pair is K${m + 1} / P${m}. End after a WS row with ${m} plain centre stitches, ${t} TS on each side and 1 unworked stitch at each end. Turn so the RS faces you.</li>
       </ol></div>
-      <div class="heel-phase"><h4>2 / Boomerang across both sides</h4><ol>
-        <li><strong>RS:</strong> Knit to the first TS; place a marker. Continue across all ${c.flkTwinsPerSide} TS on that side, knitting each pair together as one. Make a TSK in the last, previously untouched edge stitch; move that new TS back to the left needle and turn.</li>
-        <li><strong>WS:</strong> Keep the corner snug. Purl back to the marker, slip it, purl across the ${c.flkCenter} centre stitches, then place a second marker before the first TS. Purl all ${c.flkTwinsPerSide} TS on this side as single stitches. Make a TSP in the final untouched edge stitch, move the new TS back to the left needle and turn.</li>
+      <div class="heel-phase"><h4>2 / Boomerang</h4><ol>
+        <li><strong>Row 1 (RS):</strong> Knit the ${m} centre stitches to the first TS and place a marker. Do not turn. Knit all ${t} TS on this side, each as one stitch. TSK in the last stitch, move the new TS to the left needle, turn.</li>
+        <li><strong>Row 2 (WS):</strong> Pull the yarn snug on the corner TS. Purl ${t} to the marker, slip it, purl the ${m} centre stitches and place a second marker. Purl all ${t} TS on this side, each as one stitch. TSP in the last stitch, keep it tight, move it to the left needle, turn.</li>
       </ol></div>
-      <div class="heel-phase"><h4>3 / Lengthen the rows</h4><ol>
-        <li><strong>RS:</strong> Knit to the first marker and across the centre to the second marker. Remove that marker, TSK in the next stitch; turn. <strong>WS:</strong> Purl to the remaining marker, remove it, TSP in the next stitch; turn.</li>
-        <li><strong>RS:</strong> Knit to the TS, knit its two loops together, TSK in the next stitch; turn. <strong>WS:</strong> Purl to the TS, purl its two loops together, TSP in the next stitch; turn. Repeat this pair <strong>${c.flkTwinsPerSide - 1} times</strong>, ending after WS; the next-to-last stitch at each edge is now a TS.</li>
+      <div class="heel-phase"><h4>3 / Build the second half</h4><ol>
+        <li><strong>Row 1 (RS):</strong> Pull the yarn snug. Knit ${t} to the first marker, slip it, knit the ${m} centre stitches to the second marker. Remove that marker, TSK in the next stitch, turn.</li>
+        <li><strong>Row 2 (WS):</strong> Purl ${m} to the marker, remove it, TSP in the next stitch, turn.</li>
+        <li><strong>Row 3 (RS):</strong> Knit to the TS and knit it as one stitch (K${m + 1} including the TS), TSK in the next stitch, turn.</li>
+        <li><strong>Row 4 (WS):</strong> Purl to the TS and purl it as one stitch (P${m + 2} including the TS), TSP in the next stitch, turn.</li>
+        <li><strong>Repeat Rows 3–4 ${moreTimes(t - 2)}</strong> (${t - 1} pairs in all). Each row is 1 stitch longer than the one before; the last pair is K${H - 5} / P${H - 4}. You end after a WS row with a TS in the next-to-last stitch at each edge. Turn: 2 TS sit on the right needle and 2 TS at the far end of the left needle.</li>
       </ol></div>
-      <div class="heel-phase"><h4>4 / Rejoin the round</h4><p>Knit across the heel, working each remaining TS as one stitch. Work the instep, then resolve the final TS at the other heel edge on the next round. You still have <strong>${c.stitches} stitches</strong> in total.${state.direction === 'toe' ? ` Keep the back of the heel in stockinette for about <strong>${lengthText(2.54)}</strong> above the turn before starting a patterned leg.` : ''}</p></div>
-      <details class="twin-guide" open><summary>TSK & TSP quick reference</summary><p><strong>TSK:</strong> Lift the right leg of the stitch below the next stitch onto the left needle. Knit that lifted loop, place its new loop back beside the original stitch, then turn.</p><p><strong>TSP:</strong> Slip the next stitch purlwise to the right needle. Lift the collar of the stitch below onto the right needle beside it. Purl the lifted collar, move the new loop back to the left needle purlwise beside the original stitch, then turn.</p><p>When resolving a TS, knit or purl its two loops together as one stitch.</p></details>
-      <div class="heel-source">Adapted as a counting reference from Patty-Joy White’s Fish Lips Kiss Heel v2.1, pages 9–16. Use the <a href="https://www.ravelry.com/patterns/library/fish-lips-kiss-heel" target="_blank" rel="noopener">original pattern ↗</a> for photos and technique details.</div>
+      <div class="heel-phase"><h4>4 / Finish and rejoin the round</h4><ol>
+        <li><strong>Finishing row (RS):</strong> Knit the ${H - 2} heel stitches on the left needle, working the last 2 TS as single stitches.</li>
+        <li><strong>Next round:</strong> Pull the yarn snug, work across the ${H} instep stitches, then knit the 2 TS waiting at the start of the heel as single stitches and continue around. You still have <strong>${c.stitches} stitches</strong>.${state.direction === 'toe' ? ` Keep the back of the sock in stockinette for about <strong>${lengthText(2.54)}</strong> above the heel before starting a patterned leg.` : ''}</li>
+      </ol></div>
+      <details class="twin-guide" open><summary>TSK & TSP quick reference</summary><p><strong>TSK:</strong> Insert the right needle into the right leg of the stitch below the next stitch, lift it onto the left needle beside that stitch and knit it. Put the new loop back on the left needle next to the original stitch, then turn.</p><p><strong>TSP:</strong> Slip the next stitch purlwise to the right needle. With the left needle tip, lift the "collar" (the stitch below, wrapped around its base) onto the right needle beside it and purl it. Slip the new twin stitch back to the left needle purlwise, then turn.</p><p>When you meet a TS later, knit or purl its two loops together as one stitch.</p></details>
+      <div class="heel-source">Adapted as a counting reference from Patty-Joy White’s Fish Lips Kiss Heel v2.1, pages 8–16. Use the <a href="https://www.ravelry.com/patterns/library/fish-lips-kiss-heel" target="_blank" rel="noopener">original pattern ↗</a> for photos and technique details.</div>
     </div>`;
   }
   if (state.direction === 'cuff') {
+    const H = c.heelStitches;
+    const s = c.classicSide;
+    const m = c.classicCenter;
     return `<div class="heel-card"><div class="heel-card-top"><span class="heel-icon">↶</span><div><span class="recipe-eyebrow">HEEL REFERENCE</span><h3>Classic flap & gusset</h3></div></div>
-      <div class="heel-phase"><h4>1 / Flap</h4><p>Hold ${c.heelStitches} instep stitches. Work ${c.flapRows} rows flat on the other ${c.heelStitches}, slipping the first stitch of each row. On RS rows, sl 1, k 1 across for reinforcement if desired.</p></div>
-      <div class="heel-phase"><h4>2 / Square heel turn</h4><p>Divide the <strong>${c.heelStitches} heel stitches</strong> into <strong>${c.classicSide} side / ${c.classicCenter} centre / ${c.classicSide} side</strong>. Do not slip the first stitch during this turn.</p><ol>
-        <li><strong>Row 1 (RS):</strong> K${c.classicSide + c.classicCenter}, turn; ${c.classicSide} side stitches remain unworked.</li>
-        <li><strong>Row 2 (WS):</strong> P${c.classicCenter}, turn.</li>
-        <li><strong>Rows 3–${c.classicTurnRows}:</strong> Repeat this pair <strong>${c.classicSide} times</strong>: RS K${c.classicCenter - 1}, ssk across the gap, turn. WS P${c.classicCenter - 1}, p2tog across the gap, turn. Each decrease joins the last centre stitch to the next side stitch.</li>
-      </ol><p class="heel-count">Turn complete: <strong>${c.classicCenter} heel stitches</strong> remain.</p></div>
-      <div class="heel-phase"><h4>3 / Pick up & decrease</h4><p>Pick up <strong>${c.pickup} stitches on each flap edge</strong> and work across the ${c.heelStitches} resting instep stitches. You have <strong>${c.classicGussetSetupStitches} stitches</strong> before any optional corner pickups. On alternate rounds, decrease one stitch at each side of the sole <strong>${c.classicGussetDecreaseRounds} times</strong> to return to ${c.stitches} stitches. If you picked up extra corner stitches, decrease those too.</p></div>
+      <div class="heel-phase"><h4>1 / Flap</h4><p>Hold ${H} instep stitches. Work <strong>${c.flapRows} rows</strong> flat on the other ${H} heel stitches, starting with a RS row and ending with a WS row. Slip the first stitch of every row. On RS rows, (sl 1, k 1) across for reinforcement if desired. Each flap edge now has ${c.pickup} slipped-stitch loops.</p></div>
+      <div class="heel-phase"><h4>2 / Square heel turn</h4><p>Divide the <strong>${H} heel stitches</strong> into <strong>${s} side / ${m} centre / ${s} side</strong>. Each row works across the centre, then decreases the last centre stitch together with the first side stitch beyond it, and turns. The turn leaves a small gap that marks the next decrease.</p><ol>
+        <li><strong>Row 1 (RS):</strong> K${s + m - 1}, ssk, turn. ${s - 1} side stitches stay unworked beyond the ssk.</li>
+        <li><strong>Row 2 (WS):</strong> Sl 1, P${m - 2}, p2tog, turn. ${s - 1} side stitches stay unworked beyond the p2tog.</li>
+        <li><strong>Row 3 (RS):</strong> Sl 1, K${m - 2}, ssk (the stitch before the gap with the stitch after it), turn.</li>
+        <li><strong>Row 4 (WS):</strong> Sl 1, P${m - 2}, p2tog (the stitch before the gap with the stitch after it), turn.</li>
+        <li><strong>Repeat Rows 3–4 ${moreTimes(s - 2)}</strong> (Rows 5–${c.classicTurnRows}), until no side stitches are left beyond either gap. You end with a WS row.</li>
+      </ol><p class="heel-count">Every row after Row 1 is ${m} stitches wide (sl 1 + ${m - 2} + the decrease). The heel loses 1 stitch per row: ${H} → ${H - 2} after Row 2 → <strong>${m} heel stitches</strong> after Row ${c.classicTurnRows}.</p></div>
+      <div class="heel-phase"><h4>3 / Pick up & decrease the gusset</h4><ol>
+        <li><strong>Setup round:</strong> Knit across the ${m} heel stitches. With the same needle, pick up and knit <strong>${c.pickup} stitches</strong> along the flap edge, one in each slipped-stitch loop. Place a marker, work across the ${H} instep stitches, place a marker. Pick up and knit ${c.pickup} stitches along the other flap edge, then knit ${m / 2} heel stitches. The round now starts at the centre of the sole. You have <strong>${c.classicGussetSetupStitches} stitches</strong>: ${H} instep + ${m + 2 * c.pickup} sole.</li>
+        <li><strong>Decrease round:</strong> Knit to 3 stitches before the first marker, k2tog, k1; work across the instep; k1, ssk, knit to the end. 2 stitches decreased.</li>
+        <li><strong>Plain round:</strong> Knit around, keeping the instep in pattern.</li>
+        <li><strong>Repeat these 2 rounds ${times(c.classicGussetDecreaseRounds)}</strong> in all, until you are back to <strong>${c.stitches} stitches</strong> (${H} instep + ${H} sole).</li>
+      </ol><p>If you pick up an extra stitch in each corner to close a gap, work one more decrease round.</p></div>
     </div>`;
   }
   return `<div class="heel-card"><div class="heel-card-top"><span class="heel-icon">↶</span><div><span class="recipe-eyebrow">HEEL REFERENCE</span><h3>Toe-up flap & gusset</h3></div></div>
@@ -141,11 +169,11 @@ function formulaContent(c) {
   if (state.heel === 'flk') {
     $('#formula-heel-description').textContent = 'The heel uses half the sock stitches. Leave one stitch at each edge; divide the rest into two twin-stitch wedges and a plain centre.';
     $('#formula-heel-equation').innerHTML = 'heel sts = total ÷ 2<br>twins / side ≈ round((heel sts − 2) ÷ 3)<br>centre = heel sts − 2 − 2 × twins / side';
-    $('#formula-heel').innerHTML = `${c.heelStitches} = 1 + ${c.flkTwinsPerSide} + <strong>${c.flkCenter}</strong> + ${c.flkTwinsPerSide} + 1<br>First and second wedges each use ${c.flkTwinsPerSide - 1} additional RS/WS pairs.`;
+    $('#formula-heel').innerHTML = `${c.heelStitches} = 1 + ${c.flkTwinsPerSide} + <strong>${c.flkCenter}</strong> + ${c.flkTwinsPerSide} + 1<br>Row 1: K${c.heelStitches - 2} (heel sts − 2), TSK · Row 2: P${c.heelStitches - 4} (heel sts − 4), TSP<br>Each half: Rows 1–2, then Rows 3–4 × ${c.flkTwinsPerSide - 1} = ${c.flkTwinsPerSide} TS per side`;
   } else if (state.direction === 'cuff') {
-    $('#formula-heel-description').textContent = 'The heel uses half the sock stitches. A square turn divides them into two equal side groups and a centre group; each turn-row pair consumes one stitch from each side.';
-    $('#formula-heel-equation').innerHTML = 'side = floor(heel sts ÷ 3)<br>centre = heel sts − 2 × side<br>gusset setup = sock sts + centre';
-    $('#formula-heel').innerHTML = `${c.heelStitches} = ${c.classicSide} + <strong>${c.classicCenter}</strong> + ${c.classicSide}<br>${c.classicGussetSetupStitches} setup sts − (2 × ${c.classicGussetDecreaseRounds} decrease rounds) = ${c.stitches} sts`;
+    $('#formula-heel-description').textContent = 'The heel uses half the sock stitches. A square turn divides them into two equal side groups and a centre group. Every turn row decreases one side stitch into the centre, so the centre keeps the same width.';
+    $('#formula-heel-equation').innerHTML = 'side = floor(heel sts ÷ 3)<br>centre = heel sts − 2 × side<br>Row 1: K(side + centre − 1), ssk · Row 2: sl 1, P(centre − 2), p2tog<br>turn rows = 2 × side<br>gusset setup = sock sts + centre';
+    $('#formula-heel').innerHTML = `${c.heelStitches} = ${c.classicSide} + <strong>${c.classicCenter}</strong> + ${c.classicSide}<br>Row 1: K${c.classicSide + c.classicCenter - 1}, ssk · Row 2: sl 1, P${c.classicCenter - 2}, p2tog · ${c.classicTurnRows} rows → ${c.classicCenter} sts<br>${c.classicGussetSetupStitches} setup sts − (2 × ${c.classicGussetDecreaseRounds} decrease rounds) = ${c.stitches} sts`;
   } else {
     $('#formula-heel-description').textContent = 'The toe-up gusset increases on both sole edges. Its added stitches are consumed while working the heel flap upward.';
     $('#formula-heel-equation').innerHTML = 'heel sts = total ÷ 2<br>gusset increases / side ≈ round(⅜ × heel sts)<br>turn centre = heel sts − 2 × floor(heel sts ÷ 3)';

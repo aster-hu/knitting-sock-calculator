@@ -37,7 +37,8 @@ export function calculate(input) {
   const pickup = flapRows / 2;
   const classicSide = Math.floor(heelStitches / 3);
   const classicCenter = heelStitches - 2 * classicSide;
-  const classicTurnRows = 2 + 2 * classicSide;
+  // Square (Dutch) turn: every row decreases one side stitch, so 2 × side rows in all.
+  const classicTurnRows = 2 * classicSide;
   const classicGussetSetupStitches = stitches + classicCenter;
   const classicGussetDecreaseRounds = classicCenter / 2;
   const flkTwinsPerSide = Math.round((heelStitches - 2) / 3);
